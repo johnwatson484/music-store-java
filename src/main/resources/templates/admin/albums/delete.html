@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Delete Album')}"></head>
+
+<body>
+  <header th:replace="~{fragments/layout :: header}"></header>
+
+  <main>
+    <h1>Delete Album</h1>
+
+    <p>
+      Are you sure you want to delete
+      <strong th:text="${album.title}">Album</strong>?
+    </p>
+
+    <form th:action="@{/admin/albums/delete/{id}(id=${album.id})}" method="post">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      <button type="submit" class="danger">Delete</button>
+      <a class="button" th:href="@{/admin/albums}">Cancel</a>
+    </form>
+  </main>
+</body>
+
+</html>

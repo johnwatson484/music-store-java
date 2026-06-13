@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head(${album.title})}"></head>
+
+<body>
+  <header th:replace="~{fragments/layout :: header}"></header>
+
+  <main>
+    <h1 th:text="${album.title}">Album title</h1>
+
+    <img th:src="@{${album.albumArtUrl}}" alt="Album cover" style="max-width:200px">
+
+    <p>
+      <strong>Artist:</strong>
+      <span th:text="${album.artist.name}">Artist</span>
+    </p>
+
+    <p>
+      <strong>Genre:</strong>
+      <span th:text="${album.genre.name}">Genre</span>
+    </p>
+
+    <p>
+      <strong>Price:</strong>
+      <span th:text="'£' + ${album.price}">£0.00</span>
+    </p>
+
+    <a class="button" th:href="@{/cart/add/{id}(id=${album.id})}">Add to cart</a>
+  </main>
+</body>
+
+</html>

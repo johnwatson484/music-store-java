@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Order Complete')}"></head>
+
+<body>
+  <header th:replace="~{fragments/layout :: header}"></header>
+
+  <main>
+    <h1>Order complete</h1>
+    <p>
+      Thank you. Your order number is
+      <strong th:text="${orderId}">1</strong>.
+    </p>
+    <a class="button" th:href="@{/store}">Continue shopping</a>
+  </main>
+</body>
+
+</html>

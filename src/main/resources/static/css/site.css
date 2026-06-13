@@ -1,0 +1,80 @@
+body {
+    font-family: system-ui, Arial, sans-serif;
+    margin: 0;
+    background: #f7f7f7;
+    color: #222;
+}
+
+header {
+    background: #222;
+    color: white;
+    padding: 1rem 2rem;
+}
+
+header a {
+    color: white;
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+}
+
+.album-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+}
+
+.album-card img {
+    max-width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+}
+
+input, select {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+button, .button {
+    background: #2d6cdf;
+    color: white;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.danger {
+    background: #b00020;
+}
+
+.validation-error {
+    color: #b00020;
+    font-size: 0.9rem;
+}

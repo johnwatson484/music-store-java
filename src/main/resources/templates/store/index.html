@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Browse Genres')}"></head>
+
+<body>
+  <header th:replace="~{fragments/layout :: header}"></header>
+
+  <main>
+    <h1>Browse Genres</h1>
+
+    <ul>
+      <li th:each="genre : ${genres}">
+        <a th:href="@{/store/browse(genre=${genre.name})}" th:text="${genre.name}">Genre</a>
+        <span th:text="${genre.description}">Description</span>
+      </li>
+    </ul>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Checkout')}"></head>
+
+<body>
+  <header th:replace="~{fragments/layout :: header}"></header>
+
+  <main>
+    <h1>Checkout</h1>
+
+    <p th:text="'Order total: £' + ${total}">Order total</p>
+
+    <form th:action="@{/checkout}" th:object="${order}" method="post">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+      <label>First name</label>
+      <input th:field="*{firstName}">
+      <div class="validation-error" th:errors="*{firstName}"></div>
+
+      <label>Last name</label>
+      <input th:field="*{lastName}">
+      <div class="validation-error" th:errors="*{lastName}"></div>
+
+      <label>Address</label>
+      <input th:field="*{address}">
+      <div class="validation-error" th:errors="*{address}"></div>
+
+      <label>City</label>
+      <input th:field="*{city}">
+      <div class="validation-error" th:errors="*{city}"></div>
+
+      <label>Country</label>
+      <input th:field="*{country}">
+      <div class="validation-error" th:errors="*{country}"></div>
+
+      <label>Email</label>
+      <input th:field="*{email}">
+      <div class="validation-error" th:errors="*{email}"></div>
+
+      <button type="submit">Place order</button>
+    </form>
+  </main>
+</body>
+
+</html>

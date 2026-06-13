@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Shopping Cart')}"></head>
+
+<body>
+  <header th:replace="~{fragments/layout :: header}"></header>
+
+  <main>
+    <h1>Your Cart</h1>
+
+    <p th:if="${items.isEmpty()}">Your cart is empty.</p>
+
+    <table th:if="${!items.isEmpty()}">
+      <thead>
+        <tr>
+          <th>Album</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Line total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item : ${items}">
+          <td th:text="${item.album.title}">Album</td>
+          <td th:text="'£' + ${item.album.price}">£0.00</td>
+          <td th:text="${item.count}">1</td>
+          <td th:text="'£' + ${item.album.price.multiply(T(java.math.BigDecimal).valueOf(item.count))}">£0.00</td>
+          <td>
+            <form th:action="@{/cart/remove/{id}(id=${item.id})}" method="post">
+              <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+              <button type="submit" class="danger">Remove one</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 th:if="${!items.isEmpty()}" th:text="'Total: £' + ${total}">Total</h2>
+
+    <a th:if="${!items.isEmpty()}" class="button" th:href="@{/checkout}">Checkout</a>
+  </main>
+</body>
+
+</html>

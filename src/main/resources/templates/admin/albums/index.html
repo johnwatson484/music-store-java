@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Admin Albums')}"></head>
+
+<body>
+  <header th:replace="~{fragments/layout :: header}"></header>
+
+  <main>
+    <h1>Admin: Albums</h1>
+
+    <a class="button" th:href="@{/admin/albums/new}">Create new album</a>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Genre</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="album : ${albums}">
+          <td th:text="${album.title}">Title</td>
+          <td th:text="${album.artist.name}">Artist</td>
+          <td th:text="${album.genre.name}">Genre</td>
+          <td th:text="'£' + ${album.price}">£0.00</td>
+          <td>
+            <a th:href="@{/admin/albums/edit/{id}(id=${album.id})}">Edit</a>
+            |
+            <a th:href="@{/admin/albums/delete/{id}(id=${album.id})}">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+
+</html>
