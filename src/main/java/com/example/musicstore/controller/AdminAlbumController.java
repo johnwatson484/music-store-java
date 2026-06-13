@@ -4,6 +4,8 @@ import com.example.musicstore.model.Album;
 import com.example.musicstore.repository.AlbumRepository;
 import com.example.musicstore.repository.ArtistRepository;
 import com.example.musicstore.repository.GenreRepository;
+import com.example.musicstore.repository.CartItemRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +19,17 @@ public class AdminAlbumController {
     private final AlbumRepository albumRepository;
     private final GenreRepository genreRepository;
     private final ArtistRepository artistRepository;
+    private final CartItemRepository cartItemRepository;
 
     public AdminAlbumController(
             AlbumRepository albumRepository,
             GenreRepository genreRepository,
-            ArtistRepository artistRepository) {
+            ArtistRepository artistRepository,
+            CartItemRepository cartItemRepository) {
         this.albumRepository = albumRepository;
         this.genreRepository = genreRepository;
         this.artistRepository = artistRepository;
+        this.cartItemRepository = cartItemRepository;
     }
 
     @GetMapping
@@ -90,8 +95,14 @@ public class AdminAlbumController {
     }
 
     @PostMapping("/delete/{id}")
+    @Transactional
     public String delete(@PathVariable Long id) {
-        albumRepository.deleteById(id);
+        Album album = albumRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Album not found: " + id));
+
+        cartItemRepository.deleteByAlbum(album);
+        albumRepository.delete(album);
+
         return "redirect:/admin/albums";
     }
 
