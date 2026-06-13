@@ -1,4 +1,4 @@
-package com.example.music_store;
+package com.example.musicstore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class MusicStoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MusicStoreApplication.class, args);
 	}
-
 }
